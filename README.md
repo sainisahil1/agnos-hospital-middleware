@@ -78,6 +78,7 @@ erDiagram
         string Gender
         uint HospitalID FK
     }
+    ```
 
 ## Setup Instructions
 
@@ -90,10 +91,12 @@ erDiagram
    ```bash
    git clone [https://github.com/sainisahil1/agnos-hospital-middleware.git]
    cd hospital-middleware
+   ```
 
 2. Start the services:
     ```bash
     docker-compose up -d
+    ```
 
 3. The application will be available at:
 
