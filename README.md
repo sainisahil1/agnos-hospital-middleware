@@ -40,45 +40,40 @@ A Go-based middleware service for hospital staff to search patient information a
 |----------|--------|-------------|
 | `/patient/search` | POST | Search patients (local + external systems) |
 
+## Database Schema
 
-## ER Diagram
+Entities:
+---------
+[HOSPITAL]
+- ID (PK)
+- Name (unique)
 
-```mermaid
-erDiagram
-    HOSPITAL ||--o{ STAFF : has
-    HOSPITAL ||--o{ PATIENT : has
-    STAFF ||--o| HOSPITAL : belongs_to
-    PATIENT ||--o| HOSPITAL : belongs_to
+[STAFF]
+- ID (PK)
+- Username (unique)
+- Password
+- HospitalID (FK → HOSPITAL)
 
-    HOSPITAL {
-        uint ID PK
-        string Name "unique"
-    }
+[PATIENT]
+- ID (PK)
+- FirstNameTH
+- MiddleNameTH
+- LastNameTH
+- FirstNameEN
+- MiddleNameEN
+- LastNameEN
+- DateOfBirth
+- NationalID
+- PassportID
+- PhoneNumber
+- Email
+- Gender
+- HospitalID (FK → HOSPITAL)
 
-    STAFF {
-        uint ID PK
-        string Username "unique"
-        string Password
-        uint HospitalID FK
-    }
-
-    PATIENT {
-        uint ID PK
-        string FirstNameTH
-        string MiddleNameTH
-        string LastNameTH
-        string FirstNameEN
-        string MiddleNameEN
-        string LastNameEN
-        string DateOfBirth
-        string NationalID
-        string PassportID
-        string PhoneNumber
-        string Email
-        string Gender
-        uint HospitalID FK
-    }
-    </details>
+Relationships:
+--------------
+1. HOSPITAL (1) → (N) STAFF
+2. HOSPITAL (1) → (N) PATIENT
 
 ## Setup Instructions
 
@@ -91,12 +86,10 @@ erDiagram
    ```bash
    git clone [https://github.com/sainisahil1/agnos-hospital-middleware.git]
    cd hospital-middleware
-   ```
 
 2. Start the services:
     ```bash
     docker-compose up -d
-    ```
 
 3. The application will be available at:
 
