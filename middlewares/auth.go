@@ -3,9 +3,9 @@ package middleware
 import (
 	"net/http"
 	"strings"
+	"agnos-hospital-middleware/utils"
 
 	"github.com/gin-gonic/gin"
-	"agnos-hospital-middleware/utils"
 )
 
 func AuthMiddleware() gin.HandlerFunc {
@@ -24,7 +24,7 @@ func AuthMiddleware() gin.HandlerFunc {
 		}
 
 		c.Set("username", claims.Username)
-		c.Set("hospital", claims.Hospital)
+		c.Set("hospital", claims)
 
 		c.Next()
 	}
