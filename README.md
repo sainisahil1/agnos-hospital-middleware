@@ -78,7 +78,7 @@ erDiagram
         string Gender
         uint HospitalID FK
     }
-    ```
+    </details>
 
 ## Setup Instructions
 
